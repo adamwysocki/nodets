@@ -1,4 +1,5 @@
 import * as express from "express";
+import UserRouter from "./User/router";
 
 class App {
   public express;
@@ -9,11 +10,10 @@ class App {
   }
 
   private mountRoutes(): void {
-    const router = express.Router();
-    router.get("/", (request, response) => {
-      response.json({ message: "Hello World" });
-    });
-    this.express.use("/", router);
+    let router: express.Router;
+    router = express.Router();
+    UserRouter.create(router);
+    this.express.use(router);
   }
 }
 
