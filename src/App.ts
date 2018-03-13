@@ -1,5 +1,5 @@
 import * as express from "express";
-import UserRouter from "./User/router";
+import ToDoRouter from "./ToDo/toDoRouter";
 
 class App {
   public express;
@@ -12,7 +12,7 @@ class App {
   private mountRoutes(): void {
     let router: express.Router;
     router = express.Router();
-    UserRouter.create(router);
+    ToDoRouter.create(router);
     this.express.use(router);
   }
 }
