@@ -41,7 +41,17 @@ export default class ToDo {
     this.errorImmutable("id");
   }
 
+  // general error
   errorImmutable(field) {
     console.warn(`Unable to update ${field} on ToDo. ToDo class is immutable.`);
+  }
+
+  // convert class to JSON
+  toJSON() {
+    return {
+      id: this._id,
+      name: this._name,
+      done: this._done
+    };
   }
 }

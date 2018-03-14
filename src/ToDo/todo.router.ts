@@ -1,5 +1,5 @@
 import * as express from "express";
-
+import ToDoController from "./todo.controller";
 /**
  * / route
  *
@@ -26,6 +26,7 @@ export default class ToDoRouter {
     });
 
     router.post("/api/v1/todo", (request, response) => {
+      console.log("request:", JSON.stringify(request.body, null, 4));
       new ToDoRouter().create(request, response);
     });
 
@@ -49,7 +50,8 @@ export default class ToDoRouter {
    * @param response {express.Response}
    */
   public find(request: express.Request, response: express.Response) {
-    response.json({ message: "Find ToDo" });
+    var result = ToDoController.find();
+    response.json({ todos: result });
   }
 
   /**
@@ -59,7 +61,9 @@ export default class ToDoRouter {
    * @param response {express.Response}
    */
   public get(request: express.Request, response: express.Response) {
-    response.json({ message: "Get ToDo" });
+    console.log("param:", JSON.stringify(request.params, null, 4));
+    var result = ToDoController.get(request.params.id);
+    response.json({ todo: result });
   }
 
   /**
@@ -69,7 +73,8 @@ export default class ToDoRouter {
    * @param response {express.Response}
    */
   public create(request: express.Request, response: express.Response) {
-    response.json({ message: "Create ToDo" });
+    var result = ToDoController.post(request.body.name, request.body.done);
+    response.json({ todo: result });
   }
 
   /**
@@ -89,7 +94,8 @@ export default class ToDoRouter {
    * @param response {express.Response}
    */
   public update(request: express.Request, response: express.Response) {
-    response.json({ message: "Update ToDo" });
+    var result = ToDoController.update(request.params.id, request.body.name || null, request.body.done || null);
+    response.json({ message: result });
   }
 
   /**
@@ -99,6 +105,7 @@ export default class ToDoRouter {
    * @param response {express.Response}
    */
   public delete(request: express.Request, response: express.Response) {
-    response.json({ message: "Delete ToDo" });
+    var result = ToDoController.delete(request.params.id);
+    response.json({ id: result });
   }
 }
