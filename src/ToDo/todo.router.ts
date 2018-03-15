@@ -15,8 +15,6 @@ export default class ToDoRouter {
    * @static
    */
   public static create(router: express.Router) {
-    console.log("Creating ToDo routes");
-
     router.get("/api/v1/todo", (request, response) => {
       new ToDoRouter().find(request, response);
     });
