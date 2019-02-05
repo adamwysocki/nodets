@@ -65,3 +65,5 @@ Adam Wysocki (adam@adamwysocki.me). Let me know if you have any questions or com
 ## License
 
 A short snippet describing the license (MIT, Apache, etc.)
+
+note: quick test
